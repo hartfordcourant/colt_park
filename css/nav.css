@@ -1,0 +1,30 @@
+/* Bootstrap overwrites */
+div[data-trb-thirdpartynav]{
+    position:fixed!important;
+}
+div[data-trb-thirdpartynav].trb_notouch{
+    -webkit-box-sizing: content-box!important; 
+    -moz-box-sizing: content-box!important;    
+    box-sizing: content-box!important; 
+}
+div[data-trb-thirdpartynav].trb_notouch :before, .trb_notouch :after{
+    -webkit-box-sizing: content-box!important; 
+    -moz-box-sizing: content-box!important;    
+    box-sizing: content-box!important; 
+}
+div[data-trb-thirdpartynav] .trb_3pt_mainLink_a:hover{
+    color:#fff;
+    text-decoration:none;
+}
+.trb_notouch .trb_3pt_mainLink[data-hasitems]:after{
+    color:#fff!important;
+}
+@media only screen and (min-width:960px) {
+    .trb_notouch .trb_3pt_subLink{
+        line-height: 2.5rem!important;
+    }
+}
+@media only screen and (min-width:1140px) {
+div[data-trb-thirdpartynav].trb_notouch .trb_3pt_mainLink+.trb_3pt_mainLink:before {
+    border-right:none!important;
+}
