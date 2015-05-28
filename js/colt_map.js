@@ -60,7 +60,9 @@ function initialize(lat,lng,zoom_status) {
       title: results[row].id
     };
     addMarker(pos_marker_options);
-
+    //preload image associated with each marker
+    preload.onload = notifyComplete();
+    preload.src = results[row].slug;
   });
   // build polyline 
   var colt_park = new google.maps.Polyline({
@@ -228,6 +230,13 @@ function getTown(lat,lng){
   });
 }
 
+/*
+ * notify when image has loaded
+ */
+function notifyComplete(){
+  console.log("image loaded");
+}
+
 /* ******************************* */
 /* EVENTS
 /* ******************************* */
@@ -257,8 +266,8 @@ $("#compress").click(function(){
 
 //get window size on resize
 $(window).resize(function(){
-  console.log(viewportSize.getWidth());
-  console.log(viewportSize.getHeight());
+  //console.log(viewportSize.getWidth());
+  //console.log(viewportSize.getHeight());
 });
 
 /* ******************************* */
@@ -291,6 +300,7 @@ var options = {                 // map config
 var click_start = false         // has user clicked the start button
 var results;
 var overlay;
+var preload = new Image();
 var colt_park_coordinates = [
   new google.maps.LatLng(41.74954,-72.67282),
   new google.maps.LatLng(41.75074,-72.67305),
