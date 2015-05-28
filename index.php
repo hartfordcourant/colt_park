@@ -20,7 +20,7 @@
             <p><img src="img/colt-factory-dome-color.png" alt="colt factory dome"/></p>
             <p class="kicker">Coltsville</p>
             <h3>National Historic Landmark Proposal</h3>
-            <p class="intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <p class="intro">Years in the making, Coltsville National Historical Park could be established by the end of this year.  One day, visitors will be able to tour the East Armory’s iconic, onion-shaped blue dome. Or wander past  Armsmear, Samuel and Elizabeth Colt’s home. In the meantime, take a tour of the new park’s highlights through our interactive graphic.</p>
             <i id="start" class="fa fa-chevron-circle-right fa-3x"></i>
             <a id="start-link">Start</a>
           </div>
@@ -41,8 +41,6 @@
           </div>
           <i id="close-box" class="fa fa-times-circle fa-2x"></i>
         </div>
-
-        
         
         <!-- The google map goes here -->
         <div id="map-canvas"></div>

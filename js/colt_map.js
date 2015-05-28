@@ -1,35 +1,7 @@
-// global vars
-var DLAT = 41.751628;   //hartford
-var DLNG = -72.669072;  //hartford
-
-var map;                //the map object
-var initIcon = {
-    url: 'img/colt-factory-dome-gray.png',
-    size: new google.maps.Size(25, 28),
-    scaledSize: new google.maps.Size(25, 28)
-};
-var selectedIcon = {
-    url: 'img/colt-factory-dome-color.png',
-    size: new google.maps.Size(25, 28),
-    scaledSize: new google.maps.Size(25, 28)
-};
-var currentMarker = "";         // the marker currently selected
-var currentImage = "";          //
-var pos_markers = [];           // array of position markers
-var zoom_level = 16;            // initial zoom level of map
-var options = {                 // map config
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0
-};
-var click_start = false         // has user clicked the start button
-var results;
-var overlay;
-
 $(document).ready(function(){
   results_box = $("#results");
   overlay_box = $("#overlay");
-
+  //
   if(viewportSize.getWidth() < 768){
     zoom_status = false;  
   }else{
@@ -41,6 +13,10 @@ $(document).ready(function(){
   results_box.delay(2000).toggle("slide");
 
 });
+
+/* ******************************* */
+/* FUNCTIONS
+/* ******************************* */
 
 /*
  * Initialize map
@@ -61,7 +37,7 @@ function initialize(lat,lng,zoom_status) {
     zoomControl: zoom_status,
     zoomControlOptions: {
         style: google.maps.ZoomControlStyle.DEFAULT,
-        position: google.maps.ControlPosition.LEFT_CENTER
+        position: google.maps.ControlPosition.RIGHT_CENTER
     },
     scaleControl: true,
     streetViewControl: false,
@@ -86,6 +62,21 @@ function initialize(lat,lng,zoom_status) {
     addMarker(pos_marker_options);
 
   });
+  // build polyline 
+  var colt_park = new google.maps.Polyline({
+    path: colt_park_coordinates,
+    geodesic: true,
+    strokeOpacity:0.0,
+    icons: lineOptions,
+    map:map
+  });
+  var colt_park = new google.maps.Polyline({
+    path: colt_park_coordinates_church,
+    geodesic: true,
+    strokeOpacity:0.0,
+    icons: lineOptions,
+    map:map
+  });
   // alert to console what lat lng you clicked on
   google.maps.event.addListener(map, 'click', function(evt) {
     console.log(evt.latLng.lat(),evt.latLng.lng());
@@ -93,15 +84,15 @@ function initialize(lat,lng,zoom_status) {
 
 }
 
-/* ******************************* */
-/* FUNCTIONS
-/* ******************************* */
-
-// Add info window.
+/*
+ * Add info window.
+ */ 
 function addInfoWindow(newWindow) {
   info_windows.push(newWindow);
 }
-// Add a marker to the map and push to the array.
+/*
+ * Add a marker to the map and push to the array.
+ */ 
 function addMarker(options) {
   pos_marker = new google.maps.Marker(options);
   pos_markers.push(pos_marker); 
@@ -187,16 +178,12 @@ function buildOverlay(id,center){
   if(click_start == false && results_box.css("display")!="none"){
     results_box.toggle("slide", function(){
       overlay_box.toggle("slide");
-      //$("#overlay-body").fadeIn("slow");
     });
   }
   else if(overlay_box.css("display") == "none"){
     overlay_box.toggle("slide");
-    //$("#overlay-body").fadeIn("slow");
   }
-  mapRecenter(center, getOffsetX(), 0);
-  //map.panTo(center);
-  
+  mapRecenter(center, getOffsetX(), 0);  
 }
 
 /*
@@ -260,7 +247,6 @@ $("#close-box, #close-button").click(function(){
 });
 //
 $("#expand").click(function(){
-  console.log($("#lightbox"));
   $("#lightbox .img-wrapper img").attr("src", "img/" + currentMarker.title + ".jpg");
   $("#lightbox").fadeIn("fast");
 });
@@ -274,3 +260,96 @@ $(window).resize(function(){
   console.log(viewportSize.getWidth());
   console.log(viewportSize.getHeight());
 });
+
+/* ******************************* */
+/* VARIABLES
+/* ******************************* */
+
+var DLAT = 41.751628;   //hartford
+var DLNG = -72.669072;  //hartford
+
+var map;                //the map object
+var initIcon = {
+    url: 'img/colt-factory-dome-gray.png',
+    size: new google.maps.Size(25, 28),
+    scaledSize: new google.maps.Size(25, 28)
+};
+var selectedIcon = {
+    url: 'img/colt-factory-dome-color.png',
+    size: new google.maps.Size(25, 28),
+    scaledSize: new google.maps.Size(25, 28)
+};
+var currentMarker = "";         // the marker currently selected
+var currentImage = "";          //
+var pos_markers = [];           // array of position markers
+var zoom_level = 16;            // initial zoom level of map
+var options = {                 // map config
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+var click_start = false         // has user clicked the start button
+var results;
+var overlay;
+var colt_park_coordinates = [
+  new google.maps.LatLng(41.74954,-72.67282),
+  new google.maps.LatLng(41.75074,-72.67305),
+  new google.maps.LatLng(41.75074,-72.67391),
+  new google.maps.LatLng(41.75186,-72.67410),
+  new google.maps.LatLng(41.75294,-72.67438),
+  new google.maps.LatLng(41.75459,-72.67482),
+  new google.maps.LatLng(41.75457,-72.67187),
+  new google.maps.LatLng(41.75442,-72.66743),
+  new google.maps.LatLng(41.75439,-72.66644),
+  new google.maps.LatLng(41.75433,-72.66526),
+  new google.maps.LatLng(41.75472,-72.66465),
+  new google.maps.LatLng(41.75591,-72.66592),
+  new google.maps.LatLng(41.75641,-72.66519),
+  new google.maps.LatLng(41.75712,-72.66600),
+  new google.maps.LatLng(41.75761,-72.66515),
+  new google.maps.LatLng(41.75728,-72.66477),
+  new google.maps.LatLng(41.75776,-72.66393),
+  new google.maps.LatLng(41.75540,-72.66130),
+  new google.maps.LatLng(41.75443,-72.66292),
+  new google.maps.LatLng(41.75405,-72.66252),
+  new google.maps.LatLng(41.75307,-72.66406),
+  new google.maps.LatLng(41.75156,-72.66242),
+  new google.maps.LatLng(41.75063,-72.66415),
+  new google.maps.LatLng(41.75042,-72.66411),
+  new google.maps.LatLng(41.75042,-72.66411),
+  new google.maps.LatLng(41.74954,-72.67282)
+];
+var colt_park_coordinates_church = [
+  new google.maps.LatLng(41.75591,-72.66925),
+  new google.maps.LatLng(41.75741,-72.67029),
+  new google.maps.LatLng(41.75763,-72.66991),
+  new google.maps.LatLng(41.75792,-72.66966),
+  new google.maps.LatLng(41.75856,-72.66950),
+  new google.maps.LatLng(41.75851,-72.66904),
+  new google.maps.LatLng(41.75832,-72.66907),
+  new google.maps.LatLng(41.75746,-72.66801),
+  new google.maps.LatLng(41.75746,-72.66801),
+  new google.maps.LatLng(41.75713,-72.66864),
+  new google.maps.LatLng(41.75645,-72.66798),
+  new google.maps.LatLng(41.75591,-72.66925)
+];
+var lineOptions = [{
+  icon: {
+    path: 'M 2,-5 2,5 3.5, 2',
+    strokeOpacity: 0.5,
+  },
+  offset: '50%'
+},{
+  icon: {
+    path: 'M -2,5 -2,-5 -3.5,-2',
+    strokeOpacity: 0.5,
+  },
+  offset: '50%'
+},{
+  icon: {
+    path: 'M -.5,-.5 .5,-.5, .5,.5 -.5,.5',
+    fillOpacity: 0.5,
+    fillColor: '#11598e'
+  },
+  repeat: '6px'
+}];
