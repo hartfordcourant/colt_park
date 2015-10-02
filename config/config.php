@@ -15,8 +15,8 @@
  */
 define("DB_HOST", "localhost");
 define("DB_NAME", "projects_courant");
-define("DB_USER", "projectscourant");
-define("DB_PASS", ";14.)1.\\3r?#^hF");
+define("DB_USER", "xxx");
+define("DB_PASS", "xxx");
 
 /**
  * Configuration for: Cookies
